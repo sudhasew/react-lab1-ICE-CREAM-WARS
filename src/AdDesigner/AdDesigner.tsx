@@ -1,28 +1,23 @@
 import { useState } from "react";
 import "./AdDesigner.css";
 export function AdDesigner() {
-  const [flavors] = useState(["Cherry", "Chocolate", "Venilla"]);
-  const [flavor, setFlavor] = useState("");
-  const [color, setColor] = useState(true);
+  const [flavor, setFlavor] = useState("Chocolate");
+  const [color, setColor] = useState(false);
   const [pixel, setPixel] = useState(0);
 
   function addToFlavor() {
-    for (let i = 0; i < flavors.length; i++) {
-      setFlavor(flavors[i]);
-    }
-    // setColor(true);
+    setFlavor("Cherry");
+    setColor(true);
   }
 
   function colorTheme() {
     if (color) {
       setColor(true);
+    } else {
+      setColor(false);
     }
   }
 
-  //   let countUp = 0;
-  //   function upButton() {
-  //     countUp++;
-  //   }
   function updateFontUp() {
     setPixel(pixel + 1);
   }
@@ -32,33 +27,44 @@ export function AdDesigner() {
   }
 
   //   const styles = {
-  //     Up: pixel + "px",
-  //     Down: pixel + "px",
+  //     dark: pixel + "px",
+  //     light: pixel + "px",
   //   };
 
   return (
     <div>
       <h1>Ad Designer</h1>
-      <p>Vote For</p>
+      <div className="para">
+        <p onClick={addToFlavor}>Vote For</p>
+        <h3 className="flav">{flavor}</h3>
+      </div>
 
-      <h3 className="flav">{flavor}</h3>
+      <h2>What to Support</h2>
       <div className="flavorBtns">
         <button className="flavorBtn1" onClick={addToFlavor}>
-          {flavors[0]}
+          Chocolate
         </button>
         <button className="flavorBtn2" onClick={addToFlavor}>
-          {flavors[1]}
+          Venilla
         </button>
         <button className="flavorBtn3" onClick={addToFlavor}>
-          {flavors[2]}
+          Cherry
         </button>
       </div>
-      {/* <div className="colorTheme">
-        <button onClick={colorTheme}>{color}</button>
-      </div> */}
+
+      <div>
+        <h2>Color Theme</h2>
+        <button className="light" onClick={colorTheme}>
+          Light
+        </button>
+        <button className="dark" onClick={colorTheme}>
+          Dark
+        </button>
+      </div>
+
       <h2 className="fontSize">Font Size</h2>
-      <button className="updownBtn up" onClick={updateFontUp}>
-        UP
+      <button className="updownBtn down" onClick={updateFontDown}>
+        DOWN
       </button>
       <input
         className="pix"
@@ -66,11 +72,21 @@ export function AdDesigner() {
         value={pixel}
         onChange={updateFontUp}
       />
-      <button className="updownBtn down" onClick={updateFontDown}>
-        DOWN
+      <button className="updownBtn up" onClick={updateFontUp}>
+        UP
       </button>
-      {/* <h2>{color}</h2> */}
-      {/* <button onClick={addToFlavor}>{flavor}</button> */}
+      <div>
+        <h1>Vote Here</h1>
+        <button className="flavorBtn1" onClick={addToFlavor}>
+          Chocolate
+        </button>
+        <button className="flavorBtn2" onClick={addToFlavor}>
+          Venilla
+        </button>
+        <button className="flavorBtn3" onClick={addToFlavor}>
+          Cherry
+        </button>
+      </div>
     </div>
   );
 }
