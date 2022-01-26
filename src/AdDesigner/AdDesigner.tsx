@@ -1,15 +1,16 @@
 import { useState } from "react";
 import "./AdDesigner.css";
 export function AdDesigner() {
-  //   const [flavors] = useState(["Cherry", "Chocolate", "Venilla"]);
-  const [flavor, setFlavor] = useState("Cherry");
+  const [flavors] = useState(["Cherry", "Chocolate", "Venilla"]);
+  const [flavor, setFlavor] = useState("");
   const [color, setColor] = useState(true);
   const [pixel, setPixel] = useState(0);
 
-  function addToCounter() {
-    let setflavor = setFlavor("Chocolate");
-    console.log(setflavor);
-    //   setColor(true);
+  function addToFlavor() {
+    for (let i = 0; i < flavors.length; i++) {
+      setFlavor(flavors[i]);
+    }
+    // setColor(true);
   }
 
   function colorTheme() {
@@ -39,14 +40,22 @@ export function AdDesigner() {
     <div>
       <h1>Ad Designer</h1>
       <p>Vote For</p>
+
       <h3 className="flav">{flavor}</h3>
-      <h4>What to Support</h4>
-      <div>
-        <button onClick={addToCounter}>{flavor}</button>
+      <div className="flavorBtns">
+        <button className="flavorBtn1" onClick={addToFlavor}>
+          {flavors[0]}
+        </button>
+        <button className="flavorBtn2" onClick={addToFlavor}>
+          {flavors[1]}
+        </button>
+        <button className="flavorBtn3" onClick={addToFlavor}>
+          {flavors[2]}
+        </button>
       </div>
-      <div className="colorTheme">
+      {/* <div className="colorTheme">
         <button onClick={colorTheme}>{color}</button>
-      </div>
+      </div> */}
       <h2 className="fontSize">Font Size</h2>
       <button className="updownBtn up" onClick={updateFontUp}>
         UP
@@ -61,7 +70,7 @@ export function AdDesigner() {
         DOWN
       </button>
       {/* <h2>{color}</h2> */}
-      {/* <button onClick={addToCounter}>Cherry</button> */}
+      {/* <button onClick={addToFlavor}>{flavor}</button> */}
     </div>
   );
 }
