@@ -1,92 +1,31 @@
 import { useState } from "react";
-import "./AdDesigner.css";
 export function AdDesigner() {
-  const [flavor, setFlavor] = useState("Chocolate");
-  const [color, setColor] = useState(false);
-  const [pixel, setPixel] = useState(0);
+  const [whatToSupport, setWhatToSupport] = useState("Chocolate");
+  const [fontSize, setFontSize] = useState(18);
+  const [isLightTheme, setIsLightTheme] = useState(true);
 
-  function addToFlavor() {
-    setFlavor("Cherry");
-    setColor(true);
-  }
-
-  function colorTheme() {
-    if (color) {
-      setColor(true);
-    } else {
-      setColor(false);
-    }
-  }
-
-  function updateFontUp() {
-    setPixel(pixel + 1);
-  }
-
-  function updateFontDown() {
-    setPixel(pixel - 1);
-  }
-
-  //   const styles = {
-  //     dark: pixel + "px",
-  //     light: pixel + "px",
-  //   };
-
+  const styles = { fontSize: fontSize + "px" };
   return (
     <div>
       <h1>Ad Designer</h1>
-      <div className="para">
-        <p onClick={addToFlavor}>Vote For</p>
-        <h3 className="flav">{flavor}</h3>
+      <div className={isLightTheme ? "ad light" : "ad dark"}>
+        Vote For
+        <h2 style={styles}>{whatToSupport}</h2>
       </div>
 
-      <h2>What to Support</h2>
-      <div className="flavorBtns">
-        <button className="flavorBtn1" onClick={addToFlavor}>
-          Chocolate
-        </button>
-        <button className="flavorBtn2" onClick={addToFlavor}>
-          Venilla
-        </button>
-        <button className="flavorBtn3" onClick={addToFlavor}>
-          Cherry
-        </button>
-      </div>
+      <h3>What To Support</h3>
+      <button onClick={() => setWhatToSupport("Chocolate")}>Chocolate</button>
+      <button onClick={() => setWhatToSupport("Vanilla")}>Vanilla</button>
+      <button onClick={() => setWhatToSupport("Strawberry")}>Strawberry</button>
 
-      <div>
-        <h2>Color Theme</h2>
-        <button className="light" onClick={colorTheme}>
-          Light
-        </button>
-        <button className="dark" onClick={colorTheme}>
-          Dark
-        </button>
-      </div>
+      <h3>Color Theme</h3>
+      <button onClick={() => setIsLightTheme(true)}>Light</button>
+      <button onClick={() => setIsLightTheme(false)}>Dark</button>
 
-      <h2 className="fontSize">Font Size</h2>
-      <button className="updownBtn down" onClick={updateFontDown}>
-        DOWN
-      </button>
-      <input
-        className="pix"
-        type="number"
-        value={pixel}
-        onChange={updateFontUp}
-      />
-      <button className="updownBtn up" onClick={updateFontUp}>
-        UP
-      </button>
-      <div>
-        <h1>Vote Here</h1>
-        <button className="flavorBtn1" onClick={addToFlavor}>
-          Chocolate
-        </button>
-        <button className="flavorBtn2" onClick={addToFlavor}>
-          Venilla
-        </button>
-        <button className="flavorBtn3" onClick={addToFlavor}>
-          Cherry
-        </button>
-      </div>
+      <h3>Font Size</h3>
+      <button onClick={() => setFontSize(fontSize - 1)}>DOWN</button>
+      <label>{fontSize}</label>
+      <button onClick={() => setFontSize(fontSize + 1)}>UP</button>
     </div>
   );
 }
